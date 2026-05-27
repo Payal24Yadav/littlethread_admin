@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --admin-bg: #f3f4f6;
+  --sidebar-bg: #f9fafb;
+  --sidebar-text: #6b7280;
+  --sidebar-active: #111827;
+  --sidebar-hover: #f3f4f6;
+  --border: #e5e7eb;
+  --primary: #111827;
+  --white: #ffffff;
+}
+
+@layer base {
+  * {
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  /* Dark Mode Contrast Fixes */
+  .dark .text-gray-400 {
+    color: #9ca3af !important; /* Slightly lighter for better visibility */
+  }
+
+  .dark .text-gray-500 {
+    color: #d1d5db !important;
+  }
+
+  .dark .text-gray-600 {
+    color: #e5e7eb !important;
+  }
+  
+  body {
+    @apply bg-white text-gray-900 dark:bg-[#0a0a0a] dark:text-gray-100 antialiased transition-colors duration-300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-black uppercase;
+  }
+}
+
+/* Custom transitions or animations can go here */
+.animate-in {
+  animation: animate-in 0.3s ease-out;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
