@@ -83,11 +83,13 @@ const Products = () => {
     setImportResult(null);
 
     try {
-      const response = await api.post('/products/import', formData);
+      const response = await api.post('/products/import', formData, { timeout: 120000 });
       setImportResult(response.data);
       await fetchProducts();
     } catch (error) {
-      setImportError(error.response?.data?.message || 'Import failed.');
+      const data = error.response?.data;
+      const rowError = data?.error || data?.errors?.[0]?.error || data?.errors?.[0]?.errors?.join(', ');
+      setImportError(rowError ? `${data?.message || 'Import failed'}: ${rowError}` : data?.message || 'Import failed.');
     } finally {
       setImportLoading(false);
     }
